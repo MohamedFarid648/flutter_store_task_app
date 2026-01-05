@@ -1,6 +1,12 @@
-import 'package:flutter_store_task_app/src/features/auth/data/models/user_model.dart';
+import '../entities/login_entity.dart';
+import '../entities/register_entity.dart';
 
 abstract class AuthRepository {
-  // Future<User> getUser(String userId);
-  Future<UserModel> login(String username, String password);
+  Future<LoginEntity> login({required String email, required String password});
+
+  Future<RegisterEntity> register({
+    required String username,
+    required String email,
+    required String password,
+  });
 }

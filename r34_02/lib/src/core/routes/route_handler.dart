@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_store_task_app/src/features/auth/presentation/pages/login_page.dart';
 import 'package:flutter_store_task_app/src/features/auth/presentation/pages/login_screen.dart';
 import 'package:flutter_store_task_app/src/features/auth/presentation/pages/number_screen.dart';
 import 'package:flutter_store_task_app/src/features/auth/presentation/pages/onboarding_screen.dart';
+import 'package:flutter_store_task_app/src/features/auth/presentation/pages/register_page.dart';
 import 'package:flutter_store_task_app/src/features/auth/presentation/pages/signin_landing_screen.dart';
 import 'package:flutter_store_task_app/src/features/auth/presentation/pages/splash_screen.dart';
 import '/src/core/error/error.dart';
@@ -30,7 +32,10 @@ class RouteHandler {
           builder: (context) => const SignInLandingScreen(),
         );
       case RouteNames.login_screen:
-        return MaterialPageRoute(builder: (context) => const LoginScreen());
+        return MaterialPageRoute(builder: (context) => const LoginPage());
+
+      case RouteNames.register_screen:
+        return MaterialPageRoute(builder: (context) => const RegisterPage());
 
       default:
         return MaterialPageRoute(

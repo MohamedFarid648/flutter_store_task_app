@@ -7,4 +7,5 @@ class RouteNames {
   static const enter_number_screen = '/enter_number'; //4
   static const home_screen = '/home';
   static const login_screen = '/login';
+  static const register_screen = '/register';
 }

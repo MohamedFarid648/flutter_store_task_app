@@ -1,28 +1,36 @@
-import 'package:flutter_store_task_app/src/core/api/api.dart';
-import 'package:flutter_store_task_app/src/core/constants/app_urls.dart';
-import 'package:flutter_store_task_app/src/features/auth/data/models/user_model.dart';
-
-import '../sources/sources.dart';
+import '../../domain/entities/login_entity.dart';
+import '../../domain/entities/register_entity.dart';
 import '../../domain/repositories/auth_repository.dart';
+import '../sources/auth_remote_data_source.dart';
 
-class AuthRepositoryImp implements AuthRepository {
-  //final AuthRemoteDataSource remoteDataSource;
-  final ApiClient _apiClient = ApiClient();
+class AuthRepositoryImpl implements AuthRepository {
+  final AuthRemoteDataSource remoteDataSource;
 
-  //AuthRepositoryImp({required this.remoteDataSource});
+  AuthRepositoryImpl({required this.remoteDataSource});
 
-  Future<UserModel> login(String username, String password) async {
-    final response = await _apiClient.post(AppUrls.login, {
-      'username': username,
-      'password': password,
-    });
-    return UserModel.fromJson(response);
+  @override
+  Future<LoginEntity> login({
+    required String email,
+    required String password,
+  }) async {
+    final model = await remoteDataSource.loginUser(
+      email: email,
+      password: password,
+    );
+    return model;
   }
 
-  // ... example ...
-  //
-  // Future<User> getUser(String userId) async {
-  //     return remoteDataSource.getUser(userId);
-  //   }
-  // ...
+  @override
+  Future<RegisterEntity> register({
+    required String username,
+    required String email,
+    required String password,
+  }) async {
+    final model = await remoteDataSource.registerUser(
+      username: username,
+      email: email,
+      password: password,
+    );
+    return model;
+  }
 }
