@@ -8,4 +8,6 @@ class RouteNames {
   static const home_screen = '/home';
   static const login_screen = '/login';
   static const register_screen = '/register';
+  static const product_screen = '/products';
+  static const product_details_screen = '/product-details';
 }

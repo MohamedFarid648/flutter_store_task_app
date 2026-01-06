@@ -29,7 +29,9 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
   }) async {
     final response = await _dio.post(
       AppUrls.login,
-      data: {'email': email, 'password': password},
+      data: {'username': "emilys", 'password': "emilyspass"},
+      //In dummyJson website this is the correct account
+      //We Will Change it for real system
     );
 
     return LoginModel.fromJson(response.data as Map<String, dynamic>);
@@ -42,7 +44,7 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
     required String password,
   }) async {
     final response = await _dio.post(
-      AppUrls.register, // TODO: adjust endpoint
+      AppUrls.register,
       data: {'username': username, 'email': email, 'password': password},
     );
     print(response);

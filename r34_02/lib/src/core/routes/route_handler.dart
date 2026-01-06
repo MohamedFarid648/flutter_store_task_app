@@ -6,8 +6,9 @@ import 'package:flutter_store_task_app/src/features/auth/presentation/pages/onbo
 import 'package:flutter_store_task_app/src/features/auth/presentation/pages/register_page.dart';
 import 'package:flutter_store_task_app/src/features/auth/presentation/pages/signin_landing_screen.dart';
 import 'package:flutter_store_task_app/src/features/auth/presentation/pages/splash_screen.dart';
-import '/src/core/error/error.dart';
-import '/src/core/animation/animation.dart';
+import 'package:flutter_store_task_app/src/features/product/presentation/pages/pages.dart';
+import 'package:flutter_store_task_app/src/features/product/presentation/pages/product_details_page.dart';
+import 'package:flutter_store_task_app/src/features/product/presentation/pages/products_grid_page.dart';
 import 'routes.dart';
 
 class RouteHandler {
@@ -36,6 +37,23 @@ class RouteHandler {
 
       case RouteNames.register_screen:
         return MaterialPageRoute(builder: (context) => const RegisterPage());
+
+      // case RouteNames.product_screen:
+      //   return MaterialPageRoute(builder: (context) => const ProductPage());
+
+      // case RouteNames.product_details_screen:
+      //   return MaterialPageRoute(builder: (context) => const ProductDetailsPage(1));
+
+      case RouteNames.product_screen:
+        return MaterialPageRoute(builder: (_) => const ProductsGridPage());
+
+      case RouteNames.product_details_screen:
+        final int productId = routeSettings.arguments as int; // get id
+        return MaterialPageRoute(
+          builder: (_) => ProductDetailsPage(
+            productId: productId, // pass id
+          ),
+        );
 
       default:
         return MaterialPageRoute(

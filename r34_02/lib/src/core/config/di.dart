@@ -15,6 +15,8 @@ Future<void> diRegister() async {
     ),
   );
 
+  //Auth
+
   // Data Sources
   getIt.registerLazySingleton<AuthRemoteDataSource>(
     () => AuthRemoteDataSourceImpl(getIt<Dio>()),
@@ -31,5 +33,26 @@ Future<void> diRegister() async {
   );
   getIt.registerLazySingleton<RegisterUseCase>(
     () => RegisterUseCase(getIt<AuthRepository>()),
+  );
+
+  // Products data source
+  getIt.registerLazySingleton<ProductsRemoteDataSource>(
+    () => ProductsRemoteDataSourceImpl(getIt<Dio>()),
+  );
+
+  // Products repository
+  getIt.registerLazySingleton<ProductsRepository>(
+    () => ProductsRepositoryImpl(
+      remoteDataSource: getIt<ProductsRemoteDataSource>(),
+    ),
+  );
+
+  // Products use cases
+  getIt.registerLazySingleton<GetProductsUseCase>(
+    () => GetProductsUseCase(getIt<ProductsRepository>()),
+  );
+
+  getIt.registerLazySingleton<GetProductDetailsUseCase>(
+    () => GetProductDetailsUseCase(getIt<ProductsRepository>()),
   );
 }

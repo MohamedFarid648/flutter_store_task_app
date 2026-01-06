@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_store_task_app/src/core/routes/routes.dart';
 
 import '../../../../core/config/config.dart';
 import '../../domain/usecases/register_usecase.dart';
@@ -37,10 +38,13 @@ class _RegisterPageState extends State<RegisterPage> {
         email: _emailController.text.trim(),
         password: _passwordController.text,
       );
-
-      // TODO: navigate to home or login after success
       debugPrint('Registered user: ${result.email}');
+
+      if (!mounted) return;
+      Navigator.of(context).pushReplacementNamed(RouteNames.product_screen);
     } catch (e) {
+      debugPrint('Register error: $e');
+      if (!mounted) return;
       setState(() {
         _error = 'Registration failed, please try again.';
       });

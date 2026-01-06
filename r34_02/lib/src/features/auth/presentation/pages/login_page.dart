@@ -37,10 +37,12 @@ class _LoginPageState extends State<LoginPage> {
         email: _emailController.text.trim(),
         password: _passwordController.text,
       );
-
-      // TODO: navigate to home using result
+      if (!mounted) return;
+      Navigator.of(context).pushReplacementNamed(RouteNames.product_screen);
       debugPrint('Logged in as ${result.email}');
     } catch (e) {
+      debugPrint('Login error: $e');
+      if (!mounted) return;
       setState(() {
         _error = 'Login failed, please try again.';
       });
@@ -103,18 +105,18 @@ class _LoginPageState extends State<LoginPage> {
                   children: [
                     TextFormField(
                       controller: _emailController,
-                      keyboardType: TextInputType.emailAddress,
+                      keyboardType: TextInputType.text,
                       decoration: const InputDecoration(
-                        labelText: 'Email',
+                        labelText: 'User Name',
                         border: UnderlineInputBorder(),
                       ),
                       validator: (value) {
                         if (value == null || value.trim().isEmpty) {
-                          return 'Please enter email';
+                          return 'Please enter user name';
                         }
-                        if (!value.contains('@')) {
-                          return 'Invalid email';
-                        }
+                        // if (!value.contains('@')) {
+                        //   return 'Invalid email';
+                        // }
                         return null;
                       },
                     ),
