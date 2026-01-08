@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_store_task_app/src/core/config/config.dart';
 import 'package:flutter_store_task_app/src/features/auth/presentation/pages/login_page.dart';
 import 'package:flutter_store_task_app/src/features/auth/presentation/pages/login_screen.dart';
 import 'package:flutter_store_task_app/src/features/auth/presentation/pages/number_screen.dart';
@@ -6,6 +8,9 @@ import 'package:flutter_store_task_app/src/features/auth/presentation/pages/onbo
 import 'package:flutter_store_task_app/src/features/auth/presentation/pages/register_page.dart';
 import 'package:flutter_store_task_app/src/features/auth/presentation/pages/signin_landing_screen.dart';
 import 'package:flutter_store_task_app/src/features/auth/presentation/pages/splash_screen.dart';
+import 'package:flutter_store_task_app/src/features/product/data/models/product_model.dart';
+import 'package:flutter_store_task_app/src/features/product/domain/usecases/get_products_usecase.dart';
+import 'package:flutter_store_task_app/src/features/product/logic/products_cubit.dart';
 import 'package:flutter_store_task_app/src/features/product/presentation/pages/pages.dart';
 import 'package:flutter_store_task_app/src/features/product/presentation/pages/product_details_page.dart';
 import 'package:flutter_store_task_app/src/features/product/presentation/pages/products_grid_page.dart';
@@ -44,15 +49,34 @@ class RouteHandler {
       // case RouteNames.product_details_screen:
       //   return MaterialPageRoute(builder: (context) => const ProductDetailsPage(1));
 
+      // case RouteNames.product_screen:
+      //   return MaterialPageRoute(builder: (_) => const ProductsGridPage());
+
+      // case RouteNames.product_details_screen:
+      //   final int productId = routeSettings.arguments as int; // get id
+      //   return MaterialPageRoute(
+      //     builder: (_) => ProductDetailsPage(
+      //       productId: productId, // pass id
+      //     ),
+      //   );
+
       case RouteNames.product_screen:
-        return MaterialPageRoute(builder: (_) => const ProductsGridPage());
+        final String categoryTitle =
+            (routeSettings.arguments as String?) ?? 'Beverages';
+
+        return MaterialPageRoute(
+          builder: (_) => BlocProvider<ProductsCubit>(
+            create: (_) =>
+                ProductsCubit(getIt<GetProductsUseCase>())..loadProducts(),
+            child: ProductsGridPage(title: categoryTitle),
+          ),
+        );
 
       case RouteNames.product_details_screen:
-        final int productId = routeSettings.arguments as int; // get id
+        final product = routeSettings.arguments as ProductModel;
+
         return MaterialPageRoute(
-          builder: (_) => ProductDetailsPage(
-            productId: productId, // pass id
-          ),
+          builder: (_) => ProductDetailsPage(product: product),
         );
 
       default:

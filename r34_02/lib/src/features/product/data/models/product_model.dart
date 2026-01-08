@@ -1,4 +1,3 @@
-// lib/features/products/data/models/product_model.dart
 class ProductModel {
   final int id;
   final String title;
