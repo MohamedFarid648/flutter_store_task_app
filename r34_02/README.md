@@ -14,6 +14,10 @@ Project Web URL:
 
 https://mohamedfarid648.github.io/flutter_store_web/
 
+***********************************************************
+To create clean architecture structure or to create new feature:
+ctr+shift+p ,,,then type (Onyxsio),, then choose
+
 ****************************************************************
 Clean Architecture:
 

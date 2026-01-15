@@ -4,7 +4,17 @@ part of 'config.dart';
 final getIt = GetIt.instance;
 
 Future<void> diRegister() async {
-  // External: Dio client
+  // ----------------------------------
+  // External singletons
+  // ----------------------------------
+  final prefs = await SharedPreferences.getInstance();
+
+  getIt.registerLazySingleton<SharedPreferences>(() => prefs);
+
+  getIt.registerLazySingleton<SessionManager>(
+    () => SessionManager(getIt<SharedPreferences>()),
+  );
+
   getIt.registerLazySingleton<Dio>(
     () => Dio(
       BaseOptions(
@@ -15,39 +25,41 @@ Future<void> diRegister() async {
     ),
   );
 
-  //Auth
-
-  // Data Sources
+  // ----------------------------------
+  // Data sources
+  // ----------------------------------
   getIt.registerLazySingleton<AuthRemoteDataSource>(
     () => AuthRemoteDataSourceImpl(getIt<Dio>()),
   );
 
-  // Repositories
-  getIt.registerLazySingleton<AuthRepository>(
-    () => AuthRepositoryImpl(remoteDataSource: getIt<AuthRemoteDataSource>()),
-  );
-
-  // UseCases
-  getIt.registerLazySingleton<LoginUseCase>(
-    () => LoginUseCase(getIt<AuthRepository>()),
-  );
-  getIt.registerLazySingleton<RegisterUseCase>(
-    () => RegisterUseCase(getIt<AuthRepository>()),
-  );
-
-  // Products data source
   getIt.registerLazySingleton<ProductsRemoteDataSource>(
     () => ProductsRemoteDataSourceImpl(getIt<Dio>()),
   );
 
-  // Products repository
+  // ----------------------------------
+  // Repositories
+  // ----------------------------------
+  getIt.registerLazySingleton<AuthRepository>(
+    () => AuthRepositoryImpl(remoteDataSource: getIt<AuthRemoteDataSource>()),
+  );
+
   getIt.registerLazySingleton<ProductsRepository>(
     () => ProductsRepositoryImpl(
       remoteDataSource: getIt<ProductsRemoteDataSource>(),
     ),
   );
 
-  // Products use cases
+  // ----------------------------------
+  // Use cases
+  // ----------------------------------
+  getIt.registerLazySingleton<LoginUseCase>(
+    () => LoginUseCase(getIt<AuthRepository>()),
+  );
+
+  getIt.registerLazySingleton<RegisterUseCase>(
+    () => RegisterUseCase(getIt<AuthRepository>()),
+  );
+
   getIt.registerLazySingleton<GetProductsUseCase>(
     () => GetProductsUseCase(getIt<ProductsRepository>()),
   );
@@ -55,4 +67,11 @@ Future<void> diRegister() async {
   getIt.registerLazySingleton<GetProductDetailsUseCase>(
     () => GetProductDetailsUseCase(getIt<ProductsRepository>()),
   );
+
+  // ----------------------------------
+  // Cubits / BLoCs
+  // ----------------------------------
+
+  // Cart should be a singleton so the same cart is visible on all pages
+  getIt.registerLazySingleton<CartCubit>(() => CartCubit());
 }

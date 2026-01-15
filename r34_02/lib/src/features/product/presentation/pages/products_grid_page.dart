@@ -36,14 +36,14 @@ class ProductsGridPage extends StatelessWidget {
             IconButton(
               icon: const Icon(Icons.menu),
               onPressed: () {
-                //Navigator.pushNamed(context, RouteNames.menu);
+                Navigator.pushNamed(context, RouteNames.menu);
               },
             ),
             // Cart icon – opens cart page
             IconButton(
               icon: const Icon(Icons.shopping_cart_outlined),
               onPressed: () {
-                //Navigator.pushNamed(context, RouteNames.cart);
+                Navigator.pushNamed(context, RouteNames.cart);
               },
             ),
           ],
@@ -90,7 +90,7 @@ class ProductsGridPage extends StatelessWidget {
                       product: product,
                       onTap: () {
                         Navigator.of(context).pushNamed(
-                          RouteNames.product_details_screen,
+                          RouteNames.productDetailsPage,
                           arguments: product,
                         );
                       },

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_store_task_app/src/core/routes/routes.dart';
+import 'package:flutter_store_task_app/src/core/services/session_manager.dart';
 
 import '../../../../core/config/config.dart';
 import '../../domain/usecases/register_usecase.dart';
@@ -40,8 +41,19 @@ class _RegisterPageState extends State<RegisterPage> {
       );
       debugPrint('Registered user: ${result.email}');
 
+      //if success
+      final sessionManager = getIt<SessionManager>();
+
+      // Persist login flag
+      await sessionManager.markLoggedIn();
       if (!mounted) return;
-      Navigator.of(context).pushReplacementNamed(RouteNames.product_screen);
+
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(SnackBar(content: Text('Welcome ${result.email}')));
+
+      // Go to products and replace login so back button doesn't return here
+      Navigator.of(context).pushReplacementNamed(RouteNames.productPage);
     } catch (e) {
       debugPrint('Register error: $e');
       if (!mounted) return;

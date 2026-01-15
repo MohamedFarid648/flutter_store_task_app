@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_store_task_app/src/core/constants/colors.dart';
 import 'package:flutter_store_task_app/src/core/routes/routes.dart';
 
-class NumberScreen extends StatefulWidget {
-  const NumberScreen({super.key});
+class NumberPage extends StatefulWidget {
+  const NumberPage({super.key});
 
   @override
-  State<NumberScreen> createState() => _NumberScreenState();
+  State<NumberPage> createState() => _NumberPageState();
 }
 
-class _NumberScreenState extends State<NumberScreen> {
+class _NumberPageState extends State<NumberPage> {
   final TextEditingController _phoneController = TextEditingController();
 
   @override
@@ -102,7 +102,7 @@ class _NumberScreenState extends State<NumberScreen> {
         onPressed: () {
           // In a real app, this would go to Verification Code screen
           // For now, we can route it to login or home
-          Navigator.pushNamed(context, RouteNames.login_screen);
+          Navigator.pushNamed(context, RouteNames.loginPage);
           //Navigator.pushNamed(context, '/login');
         },
       ),

@@ -1,13 +1,15 @@
 library route_names;
 
 class RouteNames {
-  static const String splashScreen = "/"; //1
-  static const onboarding_screen = '/onboarding'; //2
-  static const signin_landing_screen = '/signin_landing'; //3
-  static const enter_number_screen = '/enter_number'; //4
-  static const home_screen = '/home';
-  static const login_screen = '/login';
-  static const register_screen = '/register';
-  static const product_screen = '/products';
-  static const product_details_screen = '/product-details';
+  static const String splashPage = "/"; //1
+  static const String onboardingPage = '/onboarding'; //2
+  static const String signinLandingPage = '/signin_landing'; //3
+  static const String enterNumberPage = '/enter_number'; //4
+  static const String homePage = '/home';
+  static const String loginPage = '/login';
+  static const String registerPage = '/register';
+  static const String productPage = '/products';
+  static const String productDetailsPage = '/product-details';
+  static const String cart = '/cart';
+  static const String menu = '/menu';
 }

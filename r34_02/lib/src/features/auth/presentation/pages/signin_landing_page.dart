@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_store_task_app/src/core/constants/colors.dart';
 import 'package:flutter_store_task_app/src/core/routes/routes.dart';
 
-class SignInLandingScreen extends StatelessWidget {
-  const SignInLandingScreen({super.key});
+class SignInLandingPage extends StatelessWidget {
+  const SignInLandingPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -45,10 +45,7 @@ class SignInLandingScreen extends StatelessWidget {
                   GestureDetector(
                     onTap: () {
                       // Navigate to the dedicated Number Entry Screen
-                      Navigator.pushNamed(
-                        context,
-                        RouteNames.enter_number_screen,
-                      );
+                      Navigator.pushNamed(context, RouteNames.enterNumberPage);
                     },
                     child: Container(
                       decoration: const BoxDecoration(
@@ -101,7 +98,7 @@ class SignInLandingScreen extends StatelessWidget {
                         .g_mobiledata, // Using built-in icon for simplicity
                     onPressed: () {
                       // Navigate to Email Login as per your previous request flow
-                      Navigator.pushNamed(context, RouteNames.login_screen);
+                      Navigator.pushNamed(context, RouteNames.loginPage);
                     },
                   ),
 

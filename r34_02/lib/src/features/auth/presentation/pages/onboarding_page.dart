@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_store_task_app/src/core/constants/colors.dart';
 import 'package:flutter_store_task_app/src/core/routes/routes.dart';
 
-class OnboardingScreen extends StatelessWidget {
-  const OnboardingScreen({super.key});
+class OnboardingPage extends StatelessWidget {
+  const OnboardingPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -82,7 +82,7 @@ class OnboardingScreen extends StatelessWidget {
                       onPressed: () {
                         Navigator.pushNamed(
                           context,
-                          RouteNames.signin_landing_screen,
+                          RouteNames.signinLandingPage,
                         );
                       },
                       child: const Text(

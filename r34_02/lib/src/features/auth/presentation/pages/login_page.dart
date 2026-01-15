@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_store_task_app/src/core/routes/routes.dart';
+import 'package:flutter_store_task_app/src/core/services/session_manager.dart';
 
 import '../../../../core/config/config.dart';
 import '../../domain/usecases/login_usecase.dart';
@@ -37,8 +38,23 @@ class _LoginPageState extends State<LoginPage> {
         email: _emailController.text.trim(),
         password: _passwordController.text,
       );
+
+      //if success
+
+      final sessionManager = getIt<SessionManager>();
+
+      // Persist login flag
+      await sessionManager.markLoggedIn();
+
       if (!mounted) return;
-      Navigator.of(context).pushReplacementNamed(RouteNames.product_screen);
+
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(SnackBar(content: Text('Welcome ${result.email}')));
+
+      // Go to products and replace login so back button doesn't return here
+      Navigator.of(context).pushReplacementNamed(RouteNames.productPage);
+
       debugPrint('Logged in as ${result.email}');
     } catch (e) {
       debugPrint('Login error: $e');
@@ -188,7 +204,7 @@ class _LoginPageState extends State<LoginPage> {
                           onTap: () {
                             Navigator.pushNamed(
                               context,
-                              RouteNames.register_screen,
+                              RouteNames.registerPage,
                             );
                             // Navigator.of(context).push(
                             //   MaterialPageRoute(

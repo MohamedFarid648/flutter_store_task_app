@@ -2,21 +2,21 @@ import 'package:flutter/material.dart';
 import 'package:flutter_store_task_app/src/core/constants/colors.dart';
 import 'package:flutter_store_task_app/src/core/routes/route_names.dart';
 
-class SplashScreen extends StatefulWidget {
-  const SplashScreen({super.key});
+class SplashPage extends StatefulWidget {
+  const SplashPage({super.key});
 
   @override
-  State<SplashScreen> createState() => _SplashScreenState();
+  State<SplashPage> createState() => _SplashPageState();
 }
 
-class _SplashScreenState extends State<SplashScreen> {
+class _SplashPageState extends State<SplashPage> {
   @override
   void initState() {
     super.initState();
     // Wait 3 seconds, then go to Onboarding
     Future.delayed(const Duration(seconds: 3), () {
       if (mounted) {
-        Navigator.pushReplacementNamed(context, RouteNames.onboarding_screen);
+        Navigator.pushReplacementNamed(context, RouteNames.onboardingPage);
       }
     });
   }
@@ -31,7 +31,7 @@ class _SplashScreenState extends State<SplashScreen> {
           children: [
             //const Icon(Icons.eco, color: Colors.white, size: 40),
             Image.asset(
-              "assets/images/carrot_splashscreen.png",
+              "assets/images/carrot_SplashPage.png",
               fit: BoxFit.cover,
             ),
             const SizedBox(width: 10),
