@@ -58,18 +58,12 @@ class RouteHandler {
             (routeSettings.arguments as String?) ?? 'Beverages';
 
         return MaterialPageRoute(
-          builder: (_) => MultiBlocProvider(
-            providers: [
-              BlocProvider<ProductsCubit>(
-                create: (_) =>
-                    ProductsCubit(getIt<GetProductsUseCase>())..loadProducts(),
-              ),
-              BlocProvider<CartCubit>.value(value: getIt<CartCubit>()),
-            ],
+          builder: (_) => BlocProvider<ProductsCubit>(
+            create: (_) =>
+                ProductsCubit(getIt<GetProductsUseCase>())..loadProducts(),
             child: ProductsGridPage(title: categoryTitle),
           ),
         );
-
       case RouteNames.productDetailsPage:
         final product = routeSettings.arguments as ProductModel;
 
