@@ -1,9 +1,9 @@
 
 Publish App to github:
 
-1.Create new repository (ex:flutter_counter_app)
+1.Create new repository (ex:flutter_store_web)
 2.Build your project: 
-flutter build web --release --base-href /flutter_counter_app/
+flutter build web --release --base-href /flutter_store_web/
 3.Copy build/web folder to your repository main director
 
 4.In Your repository go to Settings/Pages 

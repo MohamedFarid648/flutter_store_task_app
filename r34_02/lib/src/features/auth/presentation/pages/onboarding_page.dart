@@ -46,7 +46,7 @@ class OnboardingPage extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
                   Image.asset(
-                    "assets/images/carrot_splashscreen.png",
+                    "assets/images/carrot_splash_page.png",
                     fit: BoxFit.cover,
                   ),
                   const SizedBox(height: 10),

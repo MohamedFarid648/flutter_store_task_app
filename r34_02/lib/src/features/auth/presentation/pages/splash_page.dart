@@ -31,7 +31,7 @@ class _SplashPageState extends State<SplashPage> {
           children: [
             //const Icon(Icons.eco, color: Colors.white, size: 40),
             Image.asset(
-              "assets/images/carrot_SplashPage.png",
+              "assets/images/carrot_splash_page.png",
               fit: BoxFit.cover,
             ),
             const SizedBox(width: 10),

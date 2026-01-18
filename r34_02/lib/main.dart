@@ -70,7 +70,7 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(primarySwatch: Colors.green, fontFamily: 'Poppins'),
         initialRoute: isLoggedIn
             ? RouteNames.productsPage
-            : RouteNames.loginPage,
+            : RouteNames.splashPage,
         onGenerateRoute: RouteHandler.generateRoute,
       ),
     );
