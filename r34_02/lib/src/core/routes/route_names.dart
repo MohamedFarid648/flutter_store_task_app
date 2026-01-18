@@ -8,7 +8,7 @@ class RouteNames {
   static const String homePage = '/home';
   static const String loginPage = '/login';
   static const String registerPage = '/register';
-  static const String productPage = '/products';
+  static const String productsPage = '/products';
   static const String productDetailsPage = '/product-details';
   static const String cart = '/cart';
   static const String menu = '/menu';

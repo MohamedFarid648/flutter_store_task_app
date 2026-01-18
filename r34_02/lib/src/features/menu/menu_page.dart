@@ -15,7 +15,7 @@ class MenuPage extends StatelessWidget {
             leading: const Icon(Icons.storefront),
             title: const Text('Shop (Products)'),
             onTap: () {
-              Navigator.pushReplacementNamed(context, RouteNames.productPage);
+              Navigator.pushReplacementNamed(context, RouteNames.productsPage);
             },
           ),
           ListTile(

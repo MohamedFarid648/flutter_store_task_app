@@ -53,7 +53,7 @@ class _LoginPageState extends State<LoginPage> {
       ).showSnackBar(SnackBar(content: Text('Welcome ${result.email}')));
 
       // Go to products and replace login so back button doesn't return here
-      Navigator.of(context).pushReplacementNamed(RouteNames.productPage);
+      Navigator.of(context).pushReplacementNamed(RouteNames.productsPage);
 
       debugPrint('Logged in as ${result.email}');
     } catch (e) {

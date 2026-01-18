@@ -53,7 +53,7 @@ class RouteHandler {
       case RouteNames.menu:
         return MaterialPageRoute(builder: (_) => const MenuPage());
 
-      case RouteNames.productPage:
+      case RouteNames.productsPage:
         final categoryTitle =
             (routeSettings.arguments as String?) ?? 'Beverages';
 

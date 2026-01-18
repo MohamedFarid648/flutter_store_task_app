@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_store_task_app/src/core/routes/routes.dart';
+import 'package:flutter_store_task_app/src/features/cart/presentation/cubit/cart_cubit.dart';
 import 'package:flutter_store_task_app/src/features/product/data/models/product_model.dart';
 import 'package:flutter_store_task_app/src/features/product/logic/products_cubit.dart';
 
@@ -94,7 +95,16 @@ class ProductsGridPage extends StatelessWidget {
                           arguments: product,
                         );
                       },
-                      onAddToCart: () {},
+                      onAddToCart: () {
+                        context.read<CartCubit>().addProduct(product);
+
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(
+                            content: Text('${product.title} added to cart'),
+                            duration: const Duration(seconds: 1),
+                          ),
+                        );
+                      },
                     );
                   },
                 ),

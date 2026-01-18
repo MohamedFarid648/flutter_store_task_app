@@ -32,9 +32,11 @@
 // }
 
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_store_task_app/src/core/config/config.dart';
 import 'package:flutter_store_task_app/src/core/routes/routes.dart';
 import 'package:flutter_store_task_app/src/core/services/session_manager.dart';
+import 'package:flutter_store_task_app/src/features/cart/presentation/cubit/cart_cubit.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -55,12 +57,33 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Grocery Demo',
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(primarySwatch: Colors.green, fontFamily: 'Poppins'),
-      initialRoute: isLoggedIn ? RouteNames.productPage : RouteNames.loginPage,
-      onGenerateRoute: RouteHandler.generateRoute,
+    return MultiBlocProvider(
+      providers: [
+        //  Global cart – available in ALL screens
+        BlocProvider<CartCubit>.value(value: getIt<CartCubit>()),
+
+        // add other global cubits (theme, auth, etc.)
+      ],
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        title: 'Grocery Demo',
+        theme: ThemeData(primarySwatch: Colors.green, fontFamily: 'Poppins'),
+        initialRoute: isLoggedIn
+            ? RouteNames.productsPage
+            : RouteNames.loginPage,
+        onGenerateRoute: RouteHandler.generateRoute,
+      ),
     );
   }
+
+  // @override
+  // Widget build(BuildContext context) {
+  //   return MaterialApp(
+  //     title: 'Grocery Demo',
+  //     debugShowCheckedModeBanner: false,
+  //     theme: ThemeData(primarySwatch: Colors.green, fontFamily: 'Poppins'),
+  //     initialRoute: isLoggedIn ? RouteNames.productPage : RouteNames.loginPage,
+  //     onGenerateRoute: RouteHandler.generateRoute,
+  //   );
+  // }
 }

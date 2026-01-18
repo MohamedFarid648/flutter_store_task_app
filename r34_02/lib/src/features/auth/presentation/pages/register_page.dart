@@ -53,7 +53,7 @@ class _RegisterPageState extends State<RegisterPage> {
       ).showSnackBar(SnackBar(content: Text('Welcome ${result.email}')));
 
       // Go to products and replace login so back button doesn't return here
-      Navigator.of(context).pushReplacementNamed(RouteNames.productPage);
+      Navigator.of(context).pushReplacementNamed(RouteNames.productsPage);
     } catch (e) {
       debugPrint('Register error: $e');
       if (!mounted) return;

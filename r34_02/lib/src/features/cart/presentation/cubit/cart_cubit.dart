@@ -38,17 +38,25 @@ class CartState extends Equatable {
 class CartCubit extends Cubit<CartState> {
   CartCubit() : super(const CartState());
 
+  /// Add a single unit (used by the "+" button in grid)
   void addProduct(ProductModel product) {
+    addProductWithQuantity(product, 1);
+  }
+
+  /// Add N units (used by "Add To Basket" in details)
+  void addProductWithQuantity(ProductModel product, int quantity) {
+    if (quantity <= 0) return;
+
     final items = List<CartItem>.from(state.items);
     final index = items.indexWhere((i) => i.product.id == product.id);
 
     if (index >= 0) {
       final updated = items[index].copyWith(
-        quantity: items[index].quantity + 1,
+        quantity: items[index].quantity + quantity,
       );
       items[index] = updated;
     } else {
-      items.add(CartItem(product: product));
+      items.add(CartItem(product: product, quantity: quantity));
     }
 
     emit(state.copyWith(items: items));
